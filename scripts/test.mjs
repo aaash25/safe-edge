@@ -8,6 +8,7 @@ const commands = [
     [process.execPath, [`test_jupyter_experiment_${name}.mjs`]]),
   [process.execPath, ["test_h219_protocol.mjs"]],
   [process.execPath, ["test_safe_edge_host_runtime.mjs"]],
+  [process.execPath, ["--test", "test_connection_recovery.mjs"]],
 ];
 for (const [executable, args] of commands) {
   const result = spawnSync(executable, args, { stdio: "inherit", windowsHide: true });

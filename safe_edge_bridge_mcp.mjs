@@ -691,16 +691,33 @@ export class SafeEdgeBackend {
     if (this.runtimeMode === "host") {
       throw new Error("Host browser runtime must be recovered by its caller; no session or process was closed");
     }
+    if (this.reconnectPromise) return await this.reconnectPromise;
+    this.reconnectPromise = (async () => {
+      try {
+        this.appServer?.close();
+      } catch {
+        // The old app-server may already have disappeared.
+      }
+      this.appServer = undefined;
+      this.agent = undefined;
+      this.edge = undefined;
+      this.createdTabs.clear();
+      try {
+        await this.initialize();
+      } catch (error) {
+        // Leave a retryable, uninitialized backend and preserve the cause.
+        try { this.appServer?.close(); } catch { /* Already disconnected. */ }
+        this.appServer = undefined;
+        this.agent = undefined;
+        this.edge = undefined;
+        throw error;
+      }
+    })();
     try {
-      this.appServer?.close();
-    } catch {
-      // The old app-server may already have disappeared.
+      await this.reconnectPromise;
+    } finally {
+      this.reconnectPromise = undefined;
     }
-    this.appServer = undefined;
-    this.agent = undefined;
-    this.edge = undefined;
-    this.createdTabs.clear();
-    await this.initialize();
   }
 
   isRecoverableConnectionError(error) {
@@ -1244,6 +1261,11 @@ export class SafeEdgeBackend {
   }
 
   async callTool(name, args) {
+    // A previous reconnect may have failed, or another call may still be
+    // rebuilding the runtime. Wait before dereferencing or taking an action.
+    if (this.runtimeMode === "standalone" && (!this.edge || this.reconnectPromise)) {
+      await this.reconnect();
+    }
     try {
       return await this.callToolOnce(name, args);
     } catch (error) {
