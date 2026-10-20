@@ -1,0 +1,6 @@
+* text=auto
+*.mjs text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.ps1 text eol=crlf

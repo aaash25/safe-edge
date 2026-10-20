@@ -1,0 +1,10 @@
+{
+  "name": "safe-edge",
+  "version": "0.2.1",
+  "private": true,
+  "description": "A Windows MCP bridge for an existing Codex Edge browser session, with Jupyter experiment helpers.",
+  "type": "module",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/aaash25/safe-edge.git" },
+  "scripts": { "test": "node scripts/test.mjs", "start": "node safe_edge_bridge_mcp.mjs" }
+}

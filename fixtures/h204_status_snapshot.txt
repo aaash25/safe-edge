@@ -1,0 +1,31 @@
+- main:
+  - tabpanel "status.json":
+    - navigation "notebook actions"
+    - region "notebook content" [active]:
+      - textbox "Filter…"
+      - list:
+        - generic: ▶
+        - generic: "root:"
+        - list:
+          - generic: "job_id:"
+          - generic: "\"h204-synthetic-fixture\""
+          - generic: "state:"
+          - generic: "\"PASS\""
+          - generic: "stage:"
+          - generic: "\"complete\""
+          - generic: "updated_at:"
+          - generic: "\"2026-09-03T07:17:46+0800\""
+          - generic: "run_root:"
+          - generic: "\"/srv/research/project/route/hypotheses/h204_fixture/probe25_20260903_071628\""
+          - generic: "completed:"
+          - generic: "25"
+          - generic: "total:"
+          - generic: "25"
+          - generic: "last_source_index:"
+          - generic: "1226"
+          - generic: "bundle:"
+          - generic: "\"/srv/research/project/route/hypotheses/h204_fixture/H204_kv_anchor_policy_probe25_20260903_071742_bundle.zip\""
+          - generic: "audit_ok:"
+          - generic: "true"
+          - generic: "bundle_bytes:"
+          - generic: "611696"

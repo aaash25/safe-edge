@@ -1,0 +1,14 @@
+node_modules/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+auth.json
+config.local.toml
+*.log
+*.zip
+*.ipynb
+test-downloads/
+.test-temp/
+safe-edge-experiment-jobs/

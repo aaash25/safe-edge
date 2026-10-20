@@ -1,0 +1,17 @@
+# Merge into your existing Codex configuration and replace example paths.
+[mcp_servers.safe_edge_bridge]
+command = 'C:\Program Files\PowerShell\7\pwsh.exe'
+args = ['-NoLogo', '-NoProfile', '-NonInteractive', '-File', 'C:\path\safe-edge\start_safe_edge_bridge.ps1']
+enabled = true
+startup_timeout_sec = 120
+tool_timeout_sec = 120
+
+[mcp_servers.safe_edge_bridge.env]
+SAFE_EDGE_WORKSPACE_ROOT = 'C:\path\workspace'
+# Optional AIC experiment configuration:
+# SAFE_EDGE_SERVER_ALLOWED_ROOT = '/srv/research'
+# SAFE_EDGE_SERVER_REPO = '/srv/research/project'
+# SAFE_EDGE_SERVER_PYTHON = '/srv/research/project/.venv/bin/python'
+# SAFE_EDGE_JUPYTER_REPO_PATH = 'project'
+# HTTPS_PROXY = 'http://127.0.0.1:7890'
+# HTTP_PROXY = 'http://127.0.0.1:7890'

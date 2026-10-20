@@ -1,0 +1,7 @@
+{
+  "jupyterUrl": "https://aic.bnu.edu.cn/jupyter-forward/your-instance/lab",
+  "sourceZip": "C:\\path\\workspace\\source.zip",
+  "bundleGlob": "*_bundle.zip",
+  "waitSeconds": 900,
+  "downloadDirectory": "C:\\path\\downloads"
+}
